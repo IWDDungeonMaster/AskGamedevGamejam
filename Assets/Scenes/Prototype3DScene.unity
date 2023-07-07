@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a2168c7d6223849acb4728b9393fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardSpeed: 10
+  _forwardSpeed: 2
 --- !u!4 &1172677784
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 1727582108}
   - component: {fileID: 1727582106}
   m_Layer: 0
-  m_Name: Personage
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

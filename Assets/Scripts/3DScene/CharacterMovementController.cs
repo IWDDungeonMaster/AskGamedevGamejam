@@ -4,7 +4,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PersonageMovementController : MonoBehaviour
+public class CharacterMovementController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] int _lateralSpeed;
