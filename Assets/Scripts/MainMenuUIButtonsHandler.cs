@@ -2,20 +2,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuUIButtonsHandler
+public class MainMenuUIButtonsHandler : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup _aboutPanel;
+    [SerializeField] private CanvasGroup _mainMenuButtons;
     public void NewGameButtonClick()
     {
-        SceneManager.LoadScene("SceneName");
+        SceneManager.LoadScene("PrototypeScene");
     }
 
     public void AboutButtonClick()
     {
-
+        SwitchUIElementVisibility(_aboutPanel);
+        SwitchUIElementVisibility(_mainMenuButtons);
     }
 
     public void ExitButtonClick()
     {
+        Application.Quit();
+    }
 
+    public void CloseButtonClick()
+    {
+        SwitchUIElementVisibility(_mainMenuButtons);
+        SwitchUIElementVisibility(_aboutPanel);
+    }
+
+    private void SwitchUIElementVisibility(CanvasGroup UIElement)
+    {
+        float alpha = UIElement.alpha > 0 ? 0 : 1;
+        UIElement.alpha = alpha;
+        UIElement.blocksRaycasts = UIElement.alpha >= 0;
+        UIElement.interactable = UIElement.alpha >= 0;
     }
 }
