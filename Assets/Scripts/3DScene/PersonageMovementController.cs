@@ -7,18 +7,18 @@ using UnityEngine;
 public class PersonageMovementController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] int _speed;
+    [SerializeField] int _lateralSpeed;
     [SerializeField] private int _jumpForce;
 
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * _speed);
+            transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * _speed);
+            transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
