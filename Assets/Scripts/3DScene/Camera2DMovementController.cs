@@ -1,6 +1,9 @@
+#pragma warning disable IDE0044
+#pragma warning disable IDE0051
+
 using UnityEngine;
 
-public class CameraRotation : MonoBehaviour
+public class Camera2DMovementController : MonoBehaviour
 {
     [SerializeField] private int _speed;
 

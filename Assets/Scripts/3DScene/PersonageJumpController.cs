@@ -1,3 +1,6 @@
+#pragma warning disable IDE0044
+#pragma warning disable IDE0051
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
