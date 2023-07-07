@@ -9,11 +9,11 @@ public class Camera2DMovementController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.up * Time.deltaTime * _speed);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.down * Time.deltaTime * _speed);
         }
