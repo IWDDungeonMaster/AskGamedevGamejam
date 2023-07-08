@@ -26,10 +26,11 @@ public class Cameraman : MonoBehaviour
 
     public void ChangeBattery(int value)
     {
-        int newValue = _money + value;
+        int newValue = _batteryCharge + value;
 
         if (newValue <= 0)
         {
+            _batteryCharge = 0;
             BatteryDied?.Invoke();
             return;
         }
@@ -44,6 +45,7 @@ public class Cameraman : MonoBehaviour
 
         if (newValue <= 0)
         {
+            _money = 0;
             LooseAllMoney?.Invoke();
             return;
         }
