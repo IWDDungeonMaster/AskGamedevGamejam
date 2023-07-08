@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class FocusArea : MonoBehaviour
 {
+    public event EventHandler ActorInFocus;
+    public event EventHandler ActorInOutOfFocus;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Поймали рембо!");
+        ActorInFocus?.Invoke(this, new EventArgs());
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Потеряли рембо!");
+        ActorInOutOfFocus?.Invoke(this, new EventArgs());
     }
 }
