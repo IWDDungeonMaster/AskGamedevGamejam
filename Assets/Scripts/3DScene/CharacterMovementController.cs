@@ -14,6 +14,7 @@ public class CharacterMovementController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Cameraman _cameraman;
+    [SerializeField] private CharacterAnimator _animator;
 
     public int ForwardSpeed => _forwardSpeed;
 
@@ -23,7 +24,6 @@ public class CharacterMovementController : MonoBehaviour
 
     public bool IsJumping { get; private set; }
 
-    public bool IsMoving { get; private set; }
 
     private void Awake()
     {
@@ -43,7 +43,6 @@ public class CharacterMovementController : MonoBehaviour
         }
 
         IsJumping = false;
-        IsMoving = false;
 
         _rb ??= GetComponent<Rigidbody>();
         _cameraman ??= GetComponent<Cameraman>();
@@ -76,31 +75,27 @@ public class CharacterMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _forwardSpeed);
-            IsMoving = true;
+            _animator.MoveForward();
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.back * Time.deltaTime * _forwardSpeed);
-            IsMoving = true;
+            _animator.MoveBackward();
         }
         else
         {
-            IsMoving = false;
+            _animator.StopMoving();
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
+            _animator.JumpLeft();
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
-        }
-        else
-        {
-            IsMoving = false;
+            _animator.JumpRight();
         }
     }
 
@@ -114,6 +109,8 @@ public class CharacterMovementController : MonoBehaviour
             }
 
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+
+            _animator.JumpUp();
             IsJumping = true;
         }
     }
