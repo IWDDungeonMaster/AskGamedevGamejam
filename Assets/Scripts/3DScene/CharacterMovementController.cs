@@ -2,6 +2,7 @@
 #pragma warning disable IDE0051
 
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,6 +15,7 @@ public class CharacterMovementController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Cameraman _cameraman;
+    [SerializeField] private Animator _animator;
 
     public int ForwardSpeed => _forwardSpeed;
 
@@ -102,6 +104,7 @@ public class CharacterMovementController : MonoBehaviour
         {
             IsMoving = false;
         }
+        _animator.SetBool("IsRunning", IsMoving);
     }
 
     private void TryToJump()
