@@ -2,7 +2,6 @@
 #pragma warning disable IDE0051
 
 using System;
-using System.Diagnostics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -93,17 +92,12 @@ public class CharacterMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
         }
-        else
-        {
-            IsMoving = false;
-        }
+        Debug.Log(IsMoving);
         _animator.SetBool("IsRunning", IsMoving);
     }
 
