@@ -6,12 +6,25 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterMovementController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] int _lateralSpeed;
+    [SerializeField] private int _lateralSpeed;
+    [SerializeField] private int _forwardSpeed;
     [SerializeField] private int _jumpForce;
 
-    void Update()
+    [SerializeField] private Rigidbody _rb;
+
+    public int LateralSpeed => _lateralSpeed;
+
+    private void Update()
     {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * _forwardSpeed);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(Vector3.back * Time.deltaTime * _forwardSpeed);
+        }
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
