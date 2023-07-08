@@ -1,9 +1,11 @@
 #pragma warning disable IDE0044
 #pragma warning disable IDE0051
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Cameraman))]
 public class CharacterMovementController : MonoBehaviour
 {
     [SerializeField] private int _forwardSpeed;
@@ -11,6 +13,7 @@ public class CharacterMovementController : MonoBehaviour
     [SerializeField] private int _jumpForce;
 
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Cameraman _cameraman;
 
     public int ForwardSpeed => _forwardSpeed;
 
@@ -43,6 +46,7 @@ public class CharacterMovementController : MonoBehaviour
         IsMoving = false;
 
         _rb ??= GetComponent<Rigidbody>();
+        _cameraman ??= GetComponent<Cameraman>();
     }
 
     private void Update()
@@ -55,6 +59,16 @@ public class CharacterMovementController : MonoBehaviour
     {
         // TODO добавить определение с чем именно столкнулись.
         IsJumping = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var battery = other.GetComponent<Battery>();
+
+        if (battery is not null)
+        {
+            _cameraman.ChangeBattery(battery.Value);
+        }
     }
 
     private void TryToMove()
