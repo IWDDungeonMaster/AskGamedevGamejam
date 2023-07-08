@@ -19,7 +19,7 @@ public class CharacterAnimator : MonoBehaviour
     }
     public void MoveBackward()
     {
-        _animator.SetInteger("RunningDirection", 1);
+        _animator.SetInteger("RunningDirection", -1);
     }
 
     public void StopMoving()
