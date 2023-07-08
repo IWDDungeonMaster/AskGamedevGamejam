@@ -4,7 +4,8 @@ public class AIJumpController : MonoBehaviour
 {
     [SerializeField][Range(1, 10)] private float _jumpPower;
     [SerializeField][Range(1, 10)] private float _blocksDetectionDistance;
-    [SerializeField] private LayerMask _jumpingLayerMask, _groundLayerMask;
+    [SerializeField] private LayerMask _jumpingLayerMask;
+    [SerializeField] private LayerMask _groundLayerMask;
     private BoxCollider2D _collider;
     private Rigidbody2D _rigidbody;
 
