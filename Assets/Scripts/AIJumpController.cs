@@ -21,7 +21,7 @@ public class AIJumpController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, _collider.bounds.size, 0f, -transform.right, _blocksDetectionDistance, _jumpingLayerMask);
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, -transform.right, _blocksDetectionDistance, _jumpingLayerMask);
             if (raycastHit2D.collider != null && _jumpingLayerMask == (_jumpingLayerMask | (1 << raycastHit2D.collider.gameObject.layer)))
             {
                 Jump();
@@ -36,7 +36,7 @@ public class AIJumpController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position, _collider.bounds.size, 0f, -transform.up, 1.5f, _groundLayerMask);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, -transform.up, 0.1f, _groundLayerMask);
         return raycastHit2D.collider != null;
     }
 }
