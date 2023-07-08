@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class AIMovementController : MonoBehaviour
     [SerializeField] private LayerMask _tubeLayerMask;
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _collider;
+    private bool _isRun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,18 +19,26 @@ public class AIMovementController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();  
         _collider = GetComponent<BoxCollider2D>();
 
-        //  StartCoroutine(ChangeDirection());
+        StartCoroutine(ChangeDirection());
     }
 
     // Update is called once per frame
     void Update()
     {
-        _rigidbody.velocity = new Vector2(-_movementSpeed, _rigidbody.velocity.y);
-
-        if(IsGroundedOnTube())
+        if (_isRun)
         {
-            Debug.Log("Tube");
+            _rigidbody.velocity = new Vector2(-_movementSpeed, _rigidbody.velocity.y);
+
+            if(IsGroundedOnTube())
+            {
+                Debug.Log("Tube");
+            }
         }
+    }
+
+    public void Run(object sender, EventArgs e)
+    {
+        _isRun = true;
     }
 
     private void OnDestroy()
@@ -46,9 +56,9 @@ public class AIMovementController : MonoBehaviour
     {
         while(true)
         {
-            float directionChangeDelay = Random.Range(_minDirectionChangeDelay, _maxDirectionChangeDelay);
+            float directionChangeDelay = UnityEngine.Random.Range(_minDirectionChangeDelay, _maxDirectionChangeDelay);
             yield return new WaitForSeconds(directionChangeDelay);
-            if (Random.Range(0, 100) > 70)
+            if (UnityEngine.Random.Range(0, 100) > 70)
             {
                 _movementSpeed = -_movementSpeed;
             }

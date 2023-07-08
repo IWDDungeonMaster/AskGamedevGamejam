@@ -6877,7 +6877,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1094684370
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7374,6 +7374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfefc8d236b14469364f2a7f4446f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _countdown: 0
+  _aIController: {fileID: 1094684367}
 --- !u!4 &1474058898
 Transform:
   m_ObjectHideFlags: 0
@@ -7382,7 +7384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474058896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.643654, y: 0.41678715, z: 5.3936424}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

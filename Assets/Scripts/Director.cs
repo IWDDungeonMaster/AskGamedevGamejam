@@ -1,18 +1,34 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Director : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AIMovementController _aIController; //TODO перенести потом в Bootstrap
+
+    public event EventHandler FilmingHasBegun;
+
+    private void Awake()
     {
-        
+        if (_aIController != null)
+        {
+            FilmingHasBegun += _aIController.Run;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        StartCoroutine(StartCountDown());
+    }
+
+    private IEnumerator StartCountDown()
+    {
+        Debug.Log("Ready!");
+        yield return new WaitForSeconds(1);
+        Debug.Log("Camera!");
+        yield return new WaitForSeconds(1);
+        Debug.Log("Action!");
+        yield return new WaitForSeconds(1);
+        FilmingHasBegun?.Invoke(this, new EventArgs());
     }
 }
