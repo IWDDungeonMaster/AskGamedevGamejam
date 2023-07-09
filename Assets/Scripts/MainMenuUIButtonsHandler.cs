@@ -8,7 +8,7 @@ public class MainMenuUIButtonsHandler : MonoBehaviour
     [SerializeField] private CanvasGroup _mainMenuButtons;
     public void NewGameButtonClick()
     {
-        SceneManager.LoadScene("PrototypeScene");
+        SceneManager.LoadScene("TestPrototype");
     }
 
     public void AboutButtonClick()
