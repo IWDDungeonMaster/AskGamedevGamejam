@@ -72,12 +72,12 @@ public class CharacterMovementController : MonoBehaviour
 
     private void TryToMove()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _forwardSpeed);
             _animator?.MoveForward();
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.back * Time.deltaTime * _forwardSpeed);
             _animator?.MoveBackward();
@@ -87,12 +87,12 @@ public class CharacterMovementController : MonoBehaviour
             _animator?.StopMoving();
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
             _animator?.JumpLeft();
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
             _animator?.JumpRight();
