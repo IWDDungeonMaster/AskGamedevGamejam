@@ -16,11 +16,19 @@ public class Cameraman : MonoBehaviour
         if (_money == 0)
         {
             _money = 100;
+            Debug.LogWarning(
+                $"{gameObject.name}: ГД не назначил начальное количество денег, " +
+                $"значение по умолчанию {_money}"
+            );
         }
 
         if (_batteryCharge == 0)
         {
             _batteryCharge = 100;
+            Debug.LogWarning(
+                $"{gameObject.name}: ГД не назначил начальное количество батареи, " +
+                $"значение по умолчанию {_batteryCharge}"
+            );
         }
     }
 
@@ -31,6 +39,7 @@ public class Cameraman : MonoBehaviour
         if (newValue <= 0)
         {
             _batteryCharge = 0;
+            BatteryChanged?.Invoke(this, new BatteryChangedEventArgs(_batteryCharge));
             BatteryDied?.Invoke();
             return;
         }
@@ -46,12 +55,13 @@ public class Cameraman : MonoBehaviour
         if (newValue <= 0)
         {
             _money = 0;
+            MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money));
             LooseAllMoney?.Invoke();
             return;
         }
 
         _money = newValue;
-        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_batteryCharge));
+        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money));
     }
 }
 
@@ -59,18 +69,18 @@ public class MoneyChangedEventArgs : EventArgs
 {
     public MoneyChangedEventArgs(int value)
     {
-        Value = value;
+        CurrentValue = value;
     }
 
-    public int Value { get; private set; }
+    public int CurrentValue { get; private set; }
 }
 
 public class BatteryChangedEventArgs : EventArgs
 {
     public BatteryChangedEventArgs(int value)
     {
-        Value = value;
+        CurrentValue = value;
     }
 
-    public int Value { get; private set; }
+    public int CurrentValue { get; private set; }
 }
