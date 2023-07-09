@@ -29,14 +29,14 @@ public class AIJumpController : MonoBehaviour
         }
     }
 
-    private void Jump()
+    public void Jump()
     {
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpPower);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, -transform.up, 0.1f, _groundLayerMask);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, -transform.up, 0.05f, _groundLayerMask);
         return raycastHit2D.collider != null;
     }
 }
