@@ -3,7 +3,17 @@ guid: f199c5d8f722f974382038b1a66312a8
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Storage_DIffuse
+    second: {fileID: 2100000, guid: a754c477618648a43bb662f823eff2de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Storage_Metal
+    second: {fileID: 2100000, guid: 84a83be9d73ddf24ba3f6142f5b0f855, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

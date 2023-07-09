@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 95f0d95aee2296b4e962f381c043ea79
+guid: 5c19fc9642f4d7b48b4bb0d9506eefe3
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Storage_DIffuse
-    second: {fileID: 2100000, guid: c6124bdc24f505d40be2d1cc1dd10f20, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
