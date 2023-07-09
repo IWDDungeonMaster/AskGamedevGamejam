@@ -965,9 +965,21 @@ PrefabInstance:
       value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1713571677434844613, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: _rambo
+      value: 
+      objectReference: {fileID: 1807422082}
+    - target: {fileID: 1713571677434844613, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713571677434844613, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: _cameraman
       value: 
       objectReference: {fileID: 8275871133430288985}
+    - target: {fileID: 1713571677434844613, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: _verticalSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1713571677434844614, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -999,10 +1011,6 @@ PrefabInstance:
     - target: {fileID: 8275871132668181405, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275871132668181408, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8275871133703346161, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
