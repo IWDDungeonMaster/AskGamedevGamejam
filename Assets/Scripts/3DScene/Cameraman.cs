@@ -5,6 +5,7 @@ public class Cameraman : MonoBehaviour
 {
     [SerializeField] private int _money;
     [SerializeField] private int _batteryCharge;
+    public AudioSource source;
 
     public event EventHandler<BatteryChangedEventArgs> BatteryChanged;
     public event EventHandler<MoneyChangedEventArgs> MoneyChanged;
@@ -30,6 +31,11 @@ public class Cameraman : MonoBehaviour
                 $"значение по умолчанию {_batteryCharge}"
             );
         }
+    }
+
+    private void OnEnable()
+    {
+        source = GetComponent<AudioSource>();
     }
 
     public void ChangeBattery(int value)

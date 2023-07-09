@@ -6,6 +6,12 @@ public class MainMenuUIButtonsHandler : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _aboutPanel;
     [SerializeField] private CanvasGroup _mainMenuButtons;
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void NewGameButtonClick()
     {
         SceneManager.LoadScene("TestPrototype");

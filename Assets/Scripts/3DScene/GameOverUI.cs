@@ -14,11 +14,13 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private AIMovementController _aIController;
     [SerializeField] private Cameraman _cameraman;
+    private AudioSource _audioSource;
 
     private void OnEnable()
     {
         _aIController.Finished += Show;
         _cameraman.LooseAllMoney += Show;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Start()
@@ -53,6 +55,8 @@ public class GameOverUI : MonoBehaviour
             _score.text = "";
         }
 
+        _audioSource.Play();
+        _cameraman.source.Stop();
         StartCoroutine(WaitForRestart());
     }
 
@@ -75,6 +79,6 @@ public class GameOverUI : MonoBehaviour
             yield return null;
         }
         StopAllCoroutines();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MainMenu");
     }
 }
