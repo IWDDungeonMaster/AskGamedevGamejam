@@ -55,24 +55,44 @@ public class Cameraman : MonoBehaviour
         if (newValue <= 0)
         {
             _money = 0;
-            MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money));
+            MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money, ChangePattern.Decrease));
             LooseAllMoney?.Invoke();
             return;
         }
 
+        ChangePattern changePattern;
+
+        if (newValue < _money)
+        {
+            changePattern = ChangePattern.Decrease;
+        }
+        else
+        {
+            changePattern = ChangePattern.Increase;
+        }
+
         _money = newValue;
-        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money));
+        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money, changePattern));
     }
+}
+
+public enum ChangePattern
+{
+    Increase,
+    Decrease,
 }
 
 public class MoneyChangedEventArgs : EventArgs
 {
-    public MoneyChangedEventArgs(int value)
+    public MoneyChangedEventArgs(int value, ChangePattern pattern)
     {
         CurrentValue = value;
+        ChangePattern = pattern;
     }
 
     public int CurrentValue { get; private set; }
+
+    public ChangePattern ChangePattern { get; private set; }
 }
 
 public class BatteryChangedEventArgs : EventArgs
