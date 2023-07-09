@@ -17,7 +17,7 @@ public class AIMovementController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _collider;
     private AIJumpController _jumpController;
-    [SerializeField] private bool _isRun = false;
+    private bool _isRun = false;
 
     public event EventHandler Finished;
 
@@ -27,11 +27,6 @@ public class AIMovementController : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         _jumpController = GetComponent<AIJumpController>();
         _movementSpeed = _movementSpeedStep;
-
-
-        StartCoroutine(IncreaseSpeedOverTime());
-        StartCoroutine(ChangeDirectionOverTime());
-        StartCoroutine(Unstack());
     }
 
     private IEnumerator IncreaseSpeedOverTime()
@@ -98,8 +93,9 @@ public class AIMovementController : MonoBehaviour
 
     public void Run(object sender, EventArgs e)
     {
+        Debug.Log("Run!");
         _isRun = true;
-        _movementSpeed += _movementSpeedStep;
+        _movementSpeed = _movementSpeedStep;
         StartCoroutine(IncreaseSpeedOverTime());
         StartCoroutine(ChangeDirectionOverTime());
         StartCoroutine(Unstack());
