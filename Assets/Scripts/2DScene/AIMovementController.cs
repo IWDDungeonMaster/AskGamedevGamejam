@@ -27,7 +27,7 @@ public class AIMovementController : MonoBehaviour
 
 
         StartCoroutine(IncreaseSpeedOverTime());
-        //StartCoroutine(ChangeDirectionOverTime());
+        StartCoroutine(ChangeDirectionOverTime());
         StartCoroutine(Unstack());
     }
 
