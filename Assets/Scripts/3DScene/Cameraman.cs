@@ -16,20 +16,30 @@ public class Cameraman : MonoBehaviour
         if (_money == 0)
         {
             _money = 100;
+            Debug.LogWarning(
+                $"{gameObject.name}: ГД не назначил начальное количество денег, " +
+                $"значение по умолчанию {_money}"
+            );
         }
 
         if (_batteryCharge == 0)
         {
             _batteryCharge = 100;
+            Debug.LogWarning(
+                $"{gameObject.name}: ГД не назначил начальное количество батареи, " +
+                $"значение по умолчанию {_batteryCharge}"
+            );
         }
     }
 
     public void ChangeBattery(int value)
     {
-        int newValue = _money + value;
+        int newValue = _batteryCharge + value;
 
         if (newValue <= 0)
         {
+            _batteryCharge = 0;
+            BatteryChanged?.Invoke(this, new BatteryChangedEventArgs(_batteryCharge));
             BatteryDied?.Invoke();
             return;
         }
@@ -44,31 +54,53 @@ public class Cameraman : MonoBehaviour
 
         if (newValue <= 0)
         {
+            _money = 0;
+            MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money, ChangePattern.Decrease));
             LooseAllMoney?.Invoke();
             return;
         }
 
+        ChangePattern changePattern;
+
+        if (newValue < _money)
+        {
+            changePattern = ChangePattern.Decrease;
+        }
+        else
+        {
+            changePattern = ChangePattern.Increase;
+        }
+
         _money = newValue;
-        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_batteryCharge));
+        MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money, changePattern));
     }
+}
+
+public enum ChangePattern
+{
+    Increase,
+    Decrease,
 }
 
 public class MoneyChangedEventArgs : EventArgs
 {
-    public MoneyChangedEventArgs(int value)
+    public MoneyChangedEventArgs(int value, ChangePattern pattern)
     {
-        Value = value;
+        CurrentValue = value;
+        ChangePattern = pattern;
     }
 
-    public int Value { get; private set; }
+    public int CurrentValue { get; private set; }
+
+    public ChangePattern ChangePattern { get; private set; }
 }
 
 public class BatteryChangedEventArgs : EventArgs
 {
     public BatteryChangedEventArgs(int value)
     {
-        Value = value;
+        CurrentValue = value;
     }
 
-    public int Value { get; private set; }
+    public int CurrentValue { get; private set; }
 }

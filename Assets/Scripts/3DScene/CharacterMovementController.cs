@@ -75,27 +75,27 @@ public class CharacterMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _forwardSpeed);
-            _animator.MoveForward();
+            _animator?.MoveForward();
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.back * Time.deltaTime * _forwardSpeed);
-            _animator.MoveBackward();
+            _animator?.MoveBackward();
         }
         else
         {
-            _animator.StopMoving();
+            _animator?.StopMoving();
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
-            _animator.JumpLeft();
+            _animator?.JumpLeft();
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
-            _animator.JumpRight();
+            _animator?.JumpRight();
         }
     }
 
@@ -110,7 +110,7 @@ public class CharacterMovementController : MonoBehaviour
 
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 
-            _animator.JumpUp();
+            _animator?.JumpUp();
             IsJumping = true;
         }
     }

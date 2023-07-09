@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AIMovementController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class AIMovementController : MonoBehaviour
     private BoxCollider2D _collider;
     private AIJumpController _jumpController;
     [SerializeField] private bool _isRun = false;
+
+    public event EventHandler Finished;
 
     void Start()
     {
@@ -87,7 +90,9 @@ public class AIMovementController : MonoBehaviour
         if (IsFinished())
         {
             _movementSpeed = -_movementSpeedStep * 2;
+            Finished?.Invoke(this, new EventArgs());
             StopAllCoroutines();
+            StartCoroutine(Unstack());
         }
     }
 
@@ -100,19 +105,13 @@ public class AIMovementController : MonoBehaviour
         StartCoroutine(Unstack());
     }
 
-    private void Stop()
-    {
-        _movementSpeed = 0;
-        _rigidbody.AddForce(new Vector2(_movementSpeed, _movementSpeed/10), ForceMode2D.Impulse);
-    }
-
     private IEnumerator ChangeDirectionOverTime()
     {
         while(true)
         {
             float directionChangeDelay = UnityEngine.Random.Range(_minDirectionChangeDelay, _maxDirectionChangeDelay);
             yield return new WaitForSeconds(directionChangeDelay);
-            if (UnityEngine.Random.Range(0, 100) > 50)
+            if (UnityEngine.Random.Range(0, 100) > 60)
             {
                 ChangeDirection();
             }
