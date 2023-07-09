@@ -19,7 +19,7 @@ public class AIMovementController : MonoBehaviour
     private AIJumpController _jumpController;
     private bool _isRun = false;
 
-    public event EventHandler Finished;
+    public event EventHandler<GameOverEventArgs> Finished;
 
     void Start()
     {
@@ -85,7 +85,8 @@ public class AIMovementController : MonoBehaviour
         if (IsFinished())
         {
             _movementSpeed = -_movementSpeedStep * 2;
-            Finished?.Invoke(this, new EventArgs());
+            Finished?.Invoke(this, new GameOverEventArgs(true));
+            Director.IsFinished = true;
             StopAllCoroutines();
             StartCoroutine(Unstack());
         }
@@ -93,7 +94,6 @@ public class AIMovementController : MonoBehaviour
 
     public void Run(object sender, EventArgs e)
     {
-        Debug.Log("Run!");
         _isRun = true;
         _movementSpeed = _movementSpeedStep;
         StartCoroutine(IncreaseSpeedOverTime());

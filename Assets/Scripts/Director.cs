@@ -20,6 +20,8 @@ public class Director : MonoBehaviour
     private Coroutine _paySalaryCoroutine;
     private Coroutine _imposeFineCoroutine;
 
+    public static bool IsFinished = false;
+
     public event EventHandler FilmingHasBegun;
 
     private void Awake()
@@ -62,7 +64,10 @@ public class Director : MonoBehaviour
         {
             Debug.LogError($"{typeof(CountdownUI)} не присоединён к {gameObject.name}");
         }
+    }
 
+    private void OnEnable()
+    {
         if (_aIController != null)
         {
             FilmingHasBegun += _aIController.Run;
@@ -73,11 +78,22 @@ public class Director : MonoBehaviour
             _focusArea.ActorInFocus += PaySalary;
             _focusArea.ActorInOutOfFocus += ImposeFine;
         }
+
+        StartCoroutine(StartCountDown());
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
-        StartCoroutine(StartCountDown());
+        if (_aIController != null)
+        {
+            FilmingHasBegun -= _aIController.Run;
+        }
+
+        if (_focusArea != null)
+        {
+            _focusArea.ActorInFocus -= PaySalary;
+            _focusArea.ActorInOutOfFocus -= ImposeFine;
+        }
     }
 
     private IEnumerator StartCountDown()
@@ -94,7 +110,7 @@ public class Director : MonoBehaviour
 
     private void PaySalary(object sender, EventArgs e)
     {
-        if (_imposeFineCoroutine != null)
+        if (_imposeFineCoroutine != null && !IsFinished)
         {
             StopCoroutine(_imposeFineCoroutine);
         }
@@ -113,7 +129,7 @@ public class Director : MonoBehaviour
 
     private void ImposeFine(object sender, EventArgs e)
     {
-        if (_paySalaryCoroutine != null)
+        if (_paySalaryCoroutine != null && !IsFinished)
         {
             StopCoroutine(_paySalaryCoroutine);
         }

@@ -5,6 +5,11 @@ public class Presenter3DScene : MonoBehaviour
     [SerializeField] private Cameraman _cameramanModel;
     [SerializeField] private SalaryUI _salaryUI;
 
+    private void OnEnable()
+    {
+        _cameramanModel.MoneyChanged += _salaryUI.ChangeSalary;
+    }
+
     private void Awake()
     {
         if (_cameramanModel == null || _salaryUI == null)
@@ -13,6 +18,10 @@ public class Presenter3DScene : MonoBehaviour
             return;
         }
 
-        _cameramanModel.MoneyChanged += _salaryUI.ChangeSalary;
+    }
+
+    private void OnDisable()
+    {
+        _cameramanModel.MoneyChanged -= _salaryUI.ChangeSalary;
     }
 }

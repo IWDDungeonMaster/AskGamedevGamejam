@@ -10,9 +10,6 @@ public class FocusArea : MonoBehaviour
 
     void Update()
     {
-        // Get the horizontal and vertical axis.
-        // By default they are mapped to the arrow keys.
-        // The value is in the range -1 to 1
         float translationX = Input.GetAxis("Mouse X") * _speed * Time.deltaTime;
         float translationY = Input.GetAxis("Mouse Y") * _speed * Time.deltaTime;
 
@@ -26,7 +23,6 @@ public class FocusArea : MonoBehaviour
             translationY = Screen.height;
         }
 
-        // Move translation along the object's z-axis
         transform.Translate(translationX, translationY, 0);
     }
 

@@ -9,7 +9,7 @@ public class Cameraman : MonoBehaviour
     public event EventHandler<BatteryChangedEventArgs> BatteryChanged;
     public event EventHandler<MoneyChangedEventArgs> MoneyChanged;
     public event Action BatteryDied;
-    public event Action LooseAllMoney;
+    public event EventHandler<GameOverEventArgs> LooseAllMoney;
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class Cameraman : MonoBehaviour
         {
             _money = 0;
             MoneyChanged?.Invoke(this, new MoneyChangedEventArgs(_money, ChangePattern.Decrease));
-            LooseAllMoney?.Invoke();
+            LooseAllMoney?.Invoke(this, new GameOverEventArgs(false));
             return;
         }
 

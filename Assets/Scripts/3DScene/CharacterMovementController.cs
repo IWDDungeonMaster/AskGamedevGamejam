@@ -50,23 +50,32 @@ public class CharacterMovementController : MonoBehaviour
 
     private void Update()
     {
-        TryToMove();
-        TryToJump();
+        if (!Director.IsFinished)
+        {
+            TryToMove();
+            TryToJump();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO добавить определение с чем именно столкнулись.
-        IsJumping = false;
+        if (!Director.IsFinished)
+        {
+            // TODO добавить определение с чем именно столкнулись.
+            IsJumping = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        var battery = other.GetComponent<Battery>();
-
-        if (battery is not null)
+        if (!Director.IsFinished)
         {
-            _cameraman.ChangeBattery(battery.Value);
+            var battery = other.GetComponent<Battery>();
+
+            if (battery is not null)
+            {
+                _cameraman.ChangeBattery(battery.Value);
+            }
         }
     }
 
