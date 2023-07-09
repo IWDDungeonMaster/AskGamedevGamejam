@@ -17,7 +17,7 @@ public class SalaryUI : MonoBehaviour
             return;
         }
 
-        _salaryAmount.text = $"{e.CurrentValue}$";
+        _salaryAmount.text = $"${e.CurrentValue}";
 
         if (e.ChangePattern == ChangePattern.Increase)
         {
