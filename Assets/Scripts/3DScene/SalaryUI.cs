@@ -18,5 +18,14 @@ public class SalaryUI : MonoBehaviour
         }
 
         _salaryAmount.text = $"{e.CurrentValue}$";
+
+        if (e.ChangePattern == ChangePattern.Increase)
+        {
+            _salaryAmount.color = Color.green;
+        }
+        else
+        {
+            _salaryAmount.color = Color.red;
+        }
     }
 }
