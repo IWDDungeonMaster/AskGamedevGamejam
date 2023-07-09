@@ -4,11 +4,11 @@ using UnityEngine;
 public class CountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _countdown;
-    private CanvasGroup _overlay;
+    [SerializeField] private CanvasGroup _overlay;
 
-    private void Awake()
+    private void OnEnable()
     {
-        _overlay ??= GetComponent<CanvasGroup>();
+        _overlay = GetComponent<CanvasGroup>();
     }
 
     public void ChangeText(string newText)

@@ -98,14 +98,17 @@ public class Director : MonoBehaviour
 
     private IEnumerator StartCountDown()
     {
-        _countdownUI.ChangeText("Ready!");
-        yield return new WaitForSeconds(1);
-        _countdownUI.ChangeText("Camera!");
-        yield return new WaitForSeconds(1);
-        _countdownUI.ChangeText("Action!");
-        yield return new WaitForSeconds(1);
-        _countdownUI.ChangeText("");
-        FilmingHasBegun?.Invoke(this, new EventArgs());
+        if (_countdownUI != null)
+        {
+            _countdownUI.ChangeText("Ready!");
+            yield return new WaitForSeconds(1);
+            _countdownUI.ChangeText("Camera!");
+            yield return new WaitForSeconds(1);
+            _countdownUI.ChangeText("Action!");
+            yield return new WaitForSeconds(1);
+            _countdownUI.ChangeText("");
+            FilmingHasBegun?.Invoke(this, new EventArgs());
+        }
     }
 
     private void PaySalary(object sender, EventArgs e)
@@ -141,8 +144,8 @@ public class Director : MonoBehaviour
     {
         while (true)
         {
-            _cameraman.ChangeMoney(_fine);
             yield return new WaitForSeconds(_finePeriod);
+            _cameraman.ChangeMoney(_fine);
         }
     }
 }

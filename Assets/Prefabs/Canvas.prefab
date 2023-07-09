@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countdown: {fileID: 8243971567763600188}
+  _overlay: {fileID: 8243971567008508141}
 --- !u!114 &8243971567008508142
 MonoBehaviour:
   m_ObjectHideFlags: 0
