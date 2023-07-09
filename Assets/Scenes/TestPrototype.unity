@@ -21354,10 +21354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rambo
       objectReference: {fileID: 0}
-    - target: {fileID: 8507518968889766686, guid: 89379f3350c39b9419b56a85cf0ee0a9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1403914521, guid: dd45cc20d41c5bf419e72b33c9200231, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89379f3350c39b9419b56a85cf0ee0a9, type: 3}
 --- !u!1 &1322653637 stripped
