@@ -12,6 +12,7 @@ public class Director : MonoBehaviour
     [SerializeField] private AIMovementController _aIController; //TODO перенести потом в Bootstrap
     [SerializeField] private Cameraman _cameraman;
     [SerializeField] private FocusArea _focusArea;
+    [SerializeField] private CountdownUI _countdownUI;
 
     [SerializeField] private int _salaryPeriod;
     [SerializeField] private int _finePeriod;
@@ -47,6 +48,21 @@ public class Director : MonoBehaviour
             Debug.LogWarning($"ГД не назначил штраф, значение по умолчанию {_finePeriod}");
         }
 
+        if (_cameraman == null)
+        {
+            Debug.LogError($"{typeof(Cameraman)} не присоединён к {gameObject.name}");
+        }
+
+        if (_focusArea == null)
+        {
+            Debug.LogError($"{typeof(FocusArea)} не присоединён к {gameObject.name}");
+        }
+
+        if (_countdownUI == null)
+        {
+            Debug.LogError($"{typeof(CountdownUI)} не присоединён к {gameObject.name}");
+        }
+
         if (_aIController != null)
         {
             FilmingHasBegun += _aIController.Run;
@@ -66,12 +82,13 @@ public class Director : MonoBehaviour
 
     private IEnumerator StartCountDown()
     {
-        Debug.Log("Ready!");
+        _countdownUI.ChangeText("Ready!");
         yield return new WaitForSeconds(1);
-        Debug.Log("Camera!");
+        _countdownUI.ChangeText("Camera!");
         yield return new WaitForSeconds(1);
-        Debug.Log("Action!");
+        _countdownUI.ChangeText("Action!");
         yield return new WaitForSeconds(1);
+        _countdownUI.ChangeText("");
         FilmingHasBegun?.Invoke(this, new EventArgs());
     }
 
