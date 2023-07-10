@@ -14,6 +14,7 @@ public class CharacterMovementController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Cameraman _cameraman;
+    [SerializeField] private CharacterAnimator _animator;
 
     public int ForwardSpeed => _forwardSpeed;
 
@@ -23,7 +24,6 @@ public class CharacterMovementController : MonoBehaviour
 
     public bool IsJumping { get; private set; }
 
-    public bool IsMoving { get; private set; }
 
     private void Awake()
     {
@@ -43,7 +43,6 @@ public class CharacterMovementController : MonoBehaviour
         }
 
         IsJumping = false;
-        IsMoving = false;
 
         _rb ??= GetComponent<Rigidbody>();
         _cameraman ??= GetComponent<Cameraman>();
@@ -51,56 +50,61 @@ public class CharacterMovementController : MonoBehaviour
 
     private void Update()
     {
-        TryToMove();
-        TryToJump();
+        if (!Director.IsFinished)
+        {
+            TryToMove();
+            TryToJump();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO добавить определение с чем именно столкнулись.
-        IsJumping = false;
+        if (!Director.IsFinished)
+        {
+            // TODO добавить определение с чем именно столкнулись.
+            IsJumping = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        var battery = other.GetComponent<Battery>();
-
-        if (battery is not null)
+        if (!Director.IsFinished)
         {
-            _cameraman.ChangeBattery(battery.Value);
+            var battery = other.GetComponent<Battery>();
+
+            if (battery is not null)
+            {
+                _cameraman.ChangeBattery(battery.Value);
+            }
         }
     }
 
     private void TryToMove()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _forwardSpeed);
-            IsMoving = true;
+            _animator?.MoveForward();
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.back * Time.deltaTime * _forwardSpeed);
-            IsMoving = true;
+            _animator?.MoveBackward();
         }
         else
         {
-            IsMoving = false;
+            _animator?.StopMoving();
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
+            _animator?.JumpLeft();
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector3.right * Time.deltaTime * _lateralSpeed);
-            IsMoving = true;
-        }
-        else
-        {
-            IsMoving = false;
+            _animator?.JumpRight();
         }
     }
 
@@ -114,6 +118,8 @@ public class CharacterMovementController : MonoBehaviour
             }
 
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+
+            _animator?.JumpUp();
             IsJumping = true;
         }
     }
