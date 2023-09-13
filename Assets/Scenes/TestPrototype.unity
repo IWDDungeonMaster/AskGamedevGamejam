@@ -9608,9 +9608,21 @@ PrefabInstance:
       propertyPath: field of view
       value: 75
       objectReference: {fileID: 0}
-    - target: {fileID: 8275871133703346161, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+    - target: {fileID: 8275871132668181408, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275871132668181408, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275871133703346161, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275871133703346161, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8275871133703346162, guid: da7b4eb37d32eb04cb48140b6efa7c34, type: 3}
       propertyPath: m_IsActive
