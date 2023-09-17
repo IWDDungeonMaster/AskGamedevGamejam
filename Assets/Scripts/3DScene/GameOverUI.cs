@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 
+using SDRGames.Cameraman.MovementSystem.AI.Views;
+
 using TMPro;
 
 using UnityEngine;
@@ -12,7 +14,7 @@ public class GameOverUI : MonoBehaviour
     private CanvasGroup _overlay;
     [SerializeField] private TextMeshProUGUI _header;
     [SerializeField] private TextMeshProUGUI _score;
-    [SerializeField] private AIMovementController _aIController;
+    [SerializeField] private AIMovementView _aIController;
     [SerializeField] private Cameraman _cameraman;
     private AudioSource _audioSource;
 

@@ -2,6 +2,9 @@
 #pragma warning disable IDE0051
 using System;
 using System.Collections;
+
+using SDRGames.Cameraman.MovementSystem.AI.Presenter;
+
 using UnityEngine;
 
 public class Director : MonoBehaviour
@@ -9,7 +12,7 @@ public class Director : MonoBehaviour
     [SerializeField] private int _salary;
     [SerializeField] private int _fine;
 
-    [SerializeField] private AIMovementController _aIController; //TODO перенести потом в Bootstrap
+    [SerializeField] private AIMovementPresenter _aIController; //TODO перенести потом в Bootstrap
     [SerializeField] private Cameraman _cameraman;
     [SerializeField] private FocusArea _focusArea;
     [SerializeField] private CountdownUI _countdownUI;
