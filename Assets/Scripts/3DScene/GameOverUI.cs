@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 
+using SDRGames.Cameraman.AI.Movement;
+
 using TMPro;
 
 using UnityEngine;

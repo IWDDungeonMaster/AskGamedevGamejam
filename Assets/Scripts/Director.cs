@@ -2,6 +2,9 @@
 #pragma warning disable IDE0051
 using System;
 using System.Collections;
+
+using SDRGames.Cameraman.AI.Movement;
+
 using UnityEngine;
 
 public class Director : MonoBehaviour
